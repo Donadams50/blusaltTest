@@ -25,6 +25,7 @@ app.use(cors());
 
 dotenv.config();
 
+// consumer function that gets triggerd on start of the server
 async function start() {
          try {
                 const connection = await amqp.connect(rabbitmqBaseUrl);
@@ -34,28 +35,28 @@ async function start() {
                 const input = JSON.parse(message!.content.toString());
                 let transactionId = input.transactionId
                 let finalBalance = input.finalBalance
-                let customerId  = input.customerId
+                console.log(finalBalance)
+                let email  = input.email
+                console.log(email)
                 let status = "SUCCESS"
-                await sleep(5000);
-                console.log(2);
-                let x = await customerBilling.updateOne({transactionId:transactionId }, { $set: {"status" : status,} },{ upsert: true })
-                console.log(x)
-                let y = await customerDetails.updateOne({_id:customerId }, { $set: {"balance" : finalBalance,} },{ upsert: true })
-                console.log(y)
-                console.log("yes");
+                await sleep(100);
+                await customerBilling.updateOne({transactionId:transactionId }, { $set: {"status" : status,} })
+                await customerDetails.updateOne({email: email }, { $set: {"balance" : finalBalance} })
                 channel.ack(message!);
                 });
                 
               } catch (ex) {
-                console.error(ex);
+                  console.error(ex);
               }
         
 }
-      
+ 
+// delay function of 100ms
 function sleep(ms: number) {
-return new Promise((resolve) => {
-        setTimeout(resolve, ms);
-});
+        return new Promise((resolve) => {
+                console.log(7)
+                setTimeout(resolve, ms);
+        });
 }
 
 

@@ -17,7 +17,7 @@ export async function fundAccount(req: Request, res: Response): Promise<Response
         const codeGenerated = await getCode();
         const transactionId = `Trans${currentTimeStamp}${codeGenerated}`
         const status = "PENDING"
-        const finalBalance = parseFloat(initialBalance) + parseFloat(amount)
+        const finalBalance = initialBalance + parseFloat(amount)
         try {   
                 const bill = new Bill({
                         customerId:customerId,
@@ -37,7 +37,8 @@ export async function fundAccount(req: Request, res: Response): Promise<Response
                                 amount: amount,
                                 email: email,
                                 initialBalance: initialBalance,
-                                transactionId: transactionId
+                                transactionId: transactionId,
+                                finalBalance: finalBalance
                         }
                         // producer sending messages to the queue
                         
