@@ -1,11 +1,14 @@
-FROM node:16-alpine
 
-WORKDIR /app
+FROM node:latest
 
-COPY package.json ./
+RUN mkdir -p /billing
 
-COPY package-lock.json ./
+WORKDIR /billing
 
-RUN npm install
+ADD . /billing
 
-COPY . .
+VOLUME ["/billing"]
+
+EXPOSE 7000
+
+CMD npm install && npm run dev

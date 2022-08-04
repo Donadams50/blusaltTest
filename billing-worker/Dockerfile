@@ -1,11 +1,13 @@
-FROM node:16-alpine
+FROM node:latest
 
-WORKDIR /app
+RUN mkdir -p /billing-worker
 
-COPY package.json ./
+WORKDIR /billing-worker
 
-COPY package-lock.json ./
+ADD . /billing-worker
 
-RUN npm install
+VOLUME ["/billing-worker"]
 
-COPY . .
+EXPOSE 6000
+
+CMD npm install && npm run dev

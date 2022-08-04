@@ -25,7 +25,7 @@ app.use(cors());
 
 dotenv.config();
 
-// consumer function that gets triggerd on start of the server
+// consumer function that gets triggered when the server starts which consumes and pending message queue from rabbimq. If this service is down, whenever it comes up, it automatically consume all message queue directed to it.
 async function start() {
          try {
                 const connection = await amqp.connect(rabbitmqBaseUrl);
@@ -49,7 +49,7 @@ async function start() {
         
 }
  
-// delay function of 100ms
+// delay function pass the amount of time you want it to delay as parameter
 function sleep(ms: number) {
         return new Promise((resolve) => {
                 setTimeout(resolve, ms);

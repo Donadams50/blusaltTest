@@ -12,7 +12,7 @@ import { billRouter } from './bill/bill.routes';
 
 
 // Connect to port
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 7000;
 mongoConfig;
 
 const app = express();

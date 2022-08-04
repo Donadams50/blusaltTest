@@ -10,9 +10,9 @@
     -  Update the env file with the write data
     -  Build  rabbitmq docker container 
     -  Seed the users by running the seed command
-    -  Start the customer service locally
-    -  Start the billing service
-    -  Start the billing-worker service
+    -  Start the customer service locally or with docker build
+    -  Start the billing service or with docker build
+    -  Start the billing-worker service or with docker build
     -  Test endpoint from postman by calling customer service
 
 ## Update env of all services
@@ -50,12 +50,7 @@
 ```
 
 ```
-  npm run watch-ts
-  
-```
-
-```
-  npm run watch-node
+  npm run dev
   
 ```
 
@@ -68,12 +63,7 @@
 ```
 
 ```
-  npm run watch-ts
-  
-```
-
-```
-  npm run watch-node
+  npm run dev
   
 ```
 
@@ -86,15 +76,11 @@
 ```
 
 ```
-  npm run watch-ts
+  npm run dev
   
 ```
 
-```
-  npm run watch-node
-  
-```
-##  Test endpoint from  postman by calling customer service
+####  Test endpoint from  postman by calling customer service
 
 ```
    Go to post man and call get users endpoint to get a user id (customer service runs on port 4000)
@@ -110,7 +96,7 @@
 ## To Run Docker Build for each services
 
 ```
-   cd the service folder
+   cd to the root folder /Blusalt
   
 ```
 

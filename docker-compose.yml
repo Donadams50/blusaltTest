@@ -1,18 +1,58 @@
 version: "3.7"
 services:
-  rabbitmq:
-    image: rabbitmq:3.9.13-management-alpine
-    container_name: 'rabbitmq'
-    restart: always
-    environment:
-      - "RABBITMQ_DEFAULT_PASS=password"
-      - "RABBITMQ_DEFAULT_USER=username"
-    ports:
-      - 15672:15672
-      - 5672:5672
-    networks:
-      - rabbitmq_go_net
+  customer:
+        build:
+            dockerfile: Dockerfile
+            context: "./customer" 
+        ports:
+            - 4000:4000
+        volumes:
+            - ./customer:/customer
+        networks:
+          - customer-tier
+          - bill-tier
+  billing:
+        build:
+          dockerfile: Dockerfile
+          context: "./billing" 
+        ports:
+            - "7000:7000"
+        volumes:
+            - ./billing:/billing
+        networks:
+          bill-tier:
+             aliases:
+               - billings
+          rabbit-mq:
+  # rabbitmq:
+  #   image: rabbitmq:3.9.13-management-alpine
+  #   container_name: 'rabbitmq'
+  #   restart: always
+  #   environment:
+  #     - "RABBITMQ_DEFAULT_PASS=guest"
+  #     - "RABBITMQ_DEFAULT_USER=guest"
+  #   ports:
+  #     - 15672:15672
+  #     - 5672:5672
+  #   networks:
+  #     rabbit-mq:
+  #        aliases:
+  #          - rabbbit
+  billing-worker:
+        build:
+          dockerfile: Dockerfile
+          context: "./billing-worker" 
+        ports:
+            - "6000:6000"
+        volumes:
+            - ./billing-worker:/billing-worker
+        networks:
+          - bill-worker-tier
+          - rabbit-mq
 
 networks:
-  rabbitmq_go_net:
-    driver: bridge
+  customer-tier:
+  bill-tier:
+  rabbit-mq:
+  bill-worker-tier:
+    
