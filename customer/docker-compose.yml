@@ -1,31 +1,13 @@
-# version: '3.8'
-# services:
-#   api:
-#     container_name: customer
-#     restart: on-failure
-#     build: .
-#     volumes:
-#       - ./src:/app/src
-#     ports:
-#       - "4000:4000"
-#     command: >
-#       sh -c "npm start"
-
 version: "3"
 
 services:
   app:
-    container_name: customer-app
+    container_name: customer-service
     restart: always
     build: .
     environment: 
-      - PORT=4001 
+      - PORT=4000
     ports: 
-      - "4001:4001" 
-    links: 
-      - mongo
-  mongo:
-    container_name: mongo
-    image: mongo
-    ports:
-      - "27017:27017" 
+      - "4000:4000" 
+    command: >
+      sh -c "npm run dev"
