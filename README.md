@@ -9,9 +9,9 @@
 
 ## Procedure
     -  Update the env file with the right data(your mongodb database url)
-    -  Build the all service docker's containers
+    -  Build the docker containers for all services
     -  Seed the users by running the seed command
-    -  Test endpoint from postman by calling customer service
+    -  Test endpoints from postman (postman documentation attached to mail)
 
 
 
@@ -34,7 +34,7 @@
 ```
 
 
-### Build all services docker's container (Rabbitmq , Customer, Billing and Billing-worker)
+### Build the docker containers for services (Rabbitmq , Customer, Billing and Billing-worker)
 
 ```
    cd to the root folder /Blusalt
@@ -104,5 +104,17 @@
 
 ```
    sudo docker run -d --name some-rabbit -p 5672:5672 -p 5673:5673 -p 15672:15672 rabbitmq:3-management
+  
+```
+
+####  Test endpoint from  postman by calling customer service
+
+```
+   Go to post man and call get users endpoint to get a user id (customer service runs on port 4000)
+  
+```
+
+```
+   call fund account endpoint with the user id and an amount
   
 ```
