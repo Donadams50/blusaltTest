@@ -1,16 +1,3 @@
-# FROM node:16-alpine
-
-# WORKDIR /app
-
-# COPY package.json ./
-
-# COPY package-lock.json ./
-
-# RUN npm install
-
-# EXPOSE 4000
-
-# COPY . .
 FROM node:latest
 
 RUN mkdir -p /customer

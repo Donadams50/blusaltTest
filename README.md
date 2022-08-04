@@ -3,19 +3,19 @@
 
 ## Requirement
     - [TypeScript](https://www.npmjs.com/package/typescript)
+    - [Node 18.7.0 and above]
     - [TS-Node](https://www.npmjs.com/package/ts-node)
-    - Docker
+    - [Docker]
 
 ## Procedure
-    -  Update the env file with the write data
-    -  Build  rabbitmq docker container 
+    -  Update the env file with the right data(your mongodb database url)
+    -  Build the all service docker's containers
     -  Seed the users by running the seed command
-    -  Start the customer service locally or with docker build
-    -  Start the billing service or with docker build
-    -  Start the billing-worker service or with docker build
     -  Test endpoint from postman by calling customer service
 
-## Update env of all services
+
+
+### Update env of all services
 
 ```
   add the right MongoDB url to customer service env file
@@ -24,16 +24,7 @@
 
 ```
 
-
-## Build rabbitmq docker container 
-
-```
-  sudo docker run -d --name some-rabbit -p 5672:5672 -p 5673:5673 -p 15672:15672 rabbitmq:3-management
-  goto http://localhost:15672 to access the dashboard
-
-```
-
-## Seed the user from customer servicethe customer database
+### Seed the user from customer servicethe customer database
 
 ```
   cd customer
@@ -42,43 +33,18 @@
 
 ```
 
-## Start the customer service locally
+
+### Build all services docker's container (Rabbitmq , Customer, Billing and Billing-worker)
 
 ```
-   cd customer
+   cd to the root folder /Blusalt
   
 ```
 
 ```
-  npm run dev
-  
+  sudo docker-compose up -d --build
 ```
 
-## Start the billing service locally
-
-
-```
-   cd billing
-  
-```
-
-```
-  npm run dev
-  
-```
-
-# Start the billing-worker service locally
-
-
-```
-   cd  billing-worker
-  
-```
-
-```
-  npm run dev
-  
-```
 
 ####  Test endpoint from  postman by calling customer service
 
@@ -92,14 +58,51 @@
   
 ```
 
+## Alternatively
+    You can test this project server alternatively by starting all these service one by one manually
 
-## To Run Docker Build for each services
+### Start the customer service locally
 
 ```
-   cd to the root folder /Blusalt
+   cd customer
   
 ```
 
 ```
-  sudo docker-compose up -d --build
+  npm run dev
+  
+```
+
+### Start the billing service locally
+
+
+```
+   cd billing
+  
+```
+
+```
+  npm run dev
+  
+```
+
+### Start the billing-worker service locally
+
+
+```
+   cd  billing-worker
+  
+```
+
+```
+  npm run dev
+  
+```
+
+### Start the rabbitmg service locally
+
+
+```
+   sudo docker run -d --name some-rabbit -p 5672:5672 -p 5673:5673 -p 15672:15672 rabbitmq:3-management
+  
 ```

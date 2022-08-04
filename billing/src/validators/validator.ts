@@ -13,7 +13,7 @@ export const expressValidator = (req: Request, res: Response, next: NextFunction
         next();
 };
 
-// post new admin validator
+// fund account validator
 export const fundAccountValidator = (): ValidationChain[] => [
         body('customerId').notEmpty().withMessage('Customer id is required'),
         body('amount').notEmpty().isNumeric().withMessage('Amount is required'),

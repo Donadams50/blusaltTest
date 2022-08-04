@@ -25,7 +25,7 @@ app.use(cors());
 
 dotenv.config();
 
-// consumer function that gets triggered when the server starts which consumes and pending message queue from rabbimq. If this service is down, whenever it comes up, it automatically consume all message queue directed to it.
+// consumer function  gets triggered when the server starts which consumes and pending message queue from rabbimq. If this service is down, whenever it comes up, it automatically consume all message queue directed to it.
 async function start() {
          try {
                 const connection = await amqp.connect(rabbitmqBaseUrl);
@@ -61,7 +61,7 @@ start()
 
 app.get('/',  async (req: Request, res: Response): Promise<Response> =>
         res.status(200).send({
-                message: 'Welcome to BLUSALT bill worker!',
+                message: 'Welcome to Blusalt bill worker!',
         })
 );
 

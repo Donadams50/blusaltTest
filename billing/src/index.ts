@@ -31,7 +31,7 @@ dotenv.config();
 
 app.get('/',  async (req: Request, res: Response): Promise<Response> =>
         res.status(200).send({
-                message: 'Welcome to BLUSALT! billing',
+                message: 'Welcome to Blusalt billing',
         })
 );
 
