@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "engines": {
-    "node": "16.13.2"
+    "node": "16.16.0"
   },
   "main": "index.js",
   "scripts": {
-    "start": "tsc -w node dist/index.js",
+    "start": "tsc -w nodemon dist/js/index.js", 
     "watch-node": "nodemon dist/index.js",
     "watch-ts": "tsc -w ",
-    "postinstall": "tsc"
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",

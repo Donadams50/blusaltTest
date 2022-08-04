@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 
-import {Customer} from "../src/customer/customer.model"
+import {Customer} from "../customer/customer.model"
 import dotenv from 'dotenv';
 
 dotenv.config();

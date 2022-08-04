@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import dotenv from 'dotenv';
-import { emailUtility } from '../helpers/emailhelper';
 import { getCode } from '../helpers/codeGenerator';
 import { Bill } from './bill.model';
+import { transactionDetailsParams } from '../types/transactionDetails';
 
 import amqp from "amqplib";
 
@@ -30,8 +30,8 @@ export async function fundAccount(req: Request, res: Response): Promise<Response
                 const savebill = await bill.save();
                
                 if (savebill._id) {
-                        let recordId = savebill._id
-                        let userDetails = {
+                        const recordId = savebill._id
+                        const userDetails : transactionDetailsParams = {
                                 recordId: recordId,
                                 customerId: customerId,
                                 amount: amount,
@@ -57,7 +57,7 @@ export async function fundAccount(req: Request, res: Response): Promise<Response
                         
                         //Send a message to the queue
                         channel.sendToQueue("fundAccountbill", msgBuffer);
-                        console.log("Sending message to fundAccount queue");
+                        
                         await channel.close();
                         await connection.close();
                         

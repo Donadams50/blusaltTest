@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
 import dotenv from 'dotenv';
 import { Customer } from './customer.model';
+import { customerFundParams } from '../types/customer.fund';
 import axios from 'axios';
 dotenv.config();
 
 // fund customer account
 export async function fundAccount(req: Request, res: Response): Promise<Response> {
-        const customerId = await req.body.customerId;
-        const amount = await req.body.amount;
+        const {customerId, amount} = await req.body;
         try {    
                 //check if customer exist and also to get other details of the customer
                 const isUserExist = await Customer.findOne({_id: customerId});
@@ -18,7 +18,7 @@ export async function fundAccount(req: Request, res: Response): Promise<Response
                         'Authorization': process.env.token!,
                         'Content-Type': 'application/json'      
                         }
-                const params = {
+                const params: customerFundParams  = {
                         customerId: customerId,
                         amount: amount,
                         email: isUserExist.email,

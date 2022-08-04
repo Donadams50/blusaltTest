@@ -10,7 +10,7 @@
     "start": "tsc -w node dist/index.js",
     "watch-node": "nodemon dist/index.js",
     "watch-ts": "tsc -w ",
-    "postinstall": "tsc"
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",

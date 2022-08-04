@@ -35,9 +35,7 @@ async function start() {
                 const input = JSON.parse(message!.content.toString());
                 let transactionId = input.transactionId
                 let finalBalance = input.finalBalance
-                console.log(finalBalance)
                 let email  = input.email
-                console.log(email)
                 let status = "SUCCESS"
                 await sleep(100);
                 await customerBilling.updateOne({transactionId:transactionId }, { $set: {"status" : status,} })
@@ -54,7 +52,6 @@ async function start() {
 // delay function of 100ms
 function sleep(ms: number) {
         return new Promise((resolve) => {
-                console.log(7)
                 setTimeout(resolve, ms);
         });
 }
